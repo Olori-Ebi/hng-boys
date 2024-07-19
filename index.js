@@ -17,7 +17,7 @@ module.exports = (app) => {
     return context.octokit.issues.createComment(issueComment);
   });
 
-  app.on(["pull_request.opened", "pull_request.reopened", "pull_request.edited"], async (context) => {
+  app.on(["pull_request.opened", "pull_request.reopened", "pull_request.edited", "pull_request.closed"], async (context) => {
     const owner = context.payload.repository.owner.login
     const repo = context.payload.repository.name
     const number = context.payload.number
