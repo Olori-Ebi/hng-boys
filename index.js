@@ -15,9 +15,9 @@ module.exports = (app) => {
     });
     console.log("detected issue opened")
     return context.octokit.issues.createComment(issueComment);
-  });
+  })
 
-  app.on(["pull_request.opened", "pull_request.reopened", "pull_request.edited", "pull_request.closed"], async (context) => {
+  app.on(["pull_request.opened", "pull_request.reopened", "pull_request.edited"], async (context) => {
     const owner = context.payload.repository.owner.login
     const repo = context.payload.repository.name
     const number = context.payload.number
@@ -93,7 +93,7 @@ module.exports = (app) => {
 };
 
 function publishComments(context, snapshotCommentTemplate, snapshotLines) {
-  if (snapshotLines && snapshotLines.length == 0) {
+  if (snapshotLines.length == 0) {
     const comment = context.issue({
       body: "All dependencies are good! 💪 💯"
     })
