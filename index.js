@@ -15,7 +15,7 @@ module.exports = (app) => {
     });
     console.log("detected issue opened")
     return context.octokit.issues.createComment(issueComment);
-  });
+  })
 
   app.on(["pull_request.opened", "pull_request.reopened", "pull_request.edited"], async (context) => {
     const owner = context.payload.repository.owner.login
